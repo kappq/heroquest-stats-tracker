@@ -1,4 +1,4 @@
-# heroquest
+# heroquest-stats-tracker
 
 A stats tracker for the HeroQuest board game.
 
@@ -6,7 +6,7 @@ A stats tracker for the HeroQuest board game.
 
 Clone the repository and move into the project directory:
 ```
-$ git clone https://github.com/kappq/heroquest.git
+$ git clone https://github.com/kappq/heroquest-stats-tracker.git
 $ cd heroquest
 ```
 
