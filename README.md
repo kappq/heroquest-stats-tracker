@@ -29,13 +29,7 @@ $ nano .env
 
 Create the database tables:
 ```
-$ python
-Python 3.12.3 (main, Apr 23 2024, 09:16:07) [GCC 13.2.1 20240417] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> from heroquest import db, create_app, models
->>> app = create_app()
->>> with app.app_context():
-...     db.create_all()
+$ python create_tables.py
 ```
 
 Run the application:
