@@ -17,7 +17,7 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if not user or not check_password_hash(user.password, password):  # pyright: ignore
-            flash("Invalid email or password", "error")
+            flash("Invalid email or password", "danger")
             return redirect(url_for("auth.login"))
 
         login_user(user, remember=bool(remember))
@@ -37,12 +37,12 @@ def signup():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash("Email already used", "error")
+            flash("Email already used", "danger")
             return redirect(url_for("auth.signup"))
 
         user = User.query.filter_by(username=username).first()
         if user:
-            flash("Username already used", "error")
+            flash("Username already used", "danger")
             return redirect(url_for("auth.signup"))
 
         password_hash = generate_password_hash(password)  # pyright: ignore

@@ -31,7 +31,7 @@ def create_hero():
         elif hero_class == "wizard":
             hero = Hero(name=hero_name, hero_class=HeroClass.WIZARD, body=4, mind=6, attack=1, defend=2, movement=2)  # pyright: ignore
         else:
-            flash("Invalid hero class", "error")
+            flash("Invalid hero class", "danger")
             return redirect(url_for("game.create_hero"))
 
         db.session.add(hero)
@@ -55,7 +55,7 @@ def heroes():
 def hero(hero_id):
     hero = Hero.query.get(hero_id)
     if not hero:
-        flash("Hero not found", "error")
+        flash("Hero not found", "danger")
         return redirect(url_for("main.heroes"))
 
     return render_template("main/hero.html", hero=hero)
