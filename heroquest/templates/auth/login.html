@@ -3,16 +3,36 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<form method="post">
-    <label for="email">Email</label>
-    <input type="text" name="email" required><br>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" required><br>
+    
+<div class="container min-vh-100 d-flex justify-content-center align-items-center"> 
+    
+    <form method="post">
+    
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" name="email" required class="form-control border border-success border-opacity-50 rounded-3 w-auto" aria-describedby="emailHelp"><br>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" required class="form-control border border-success border-opacity-50 rounded-3 w-auto"><br>
+        </div>
+        
+        <div class="mb-3">
+            <input type="checkbox" name="remember" class="form-check-input ">
+            <label for="remember" class="form-check-label">Remember</label><br>
+        </div>
+          
+        <div>  
+            <p><a class="link-offset-2 link-underline link-underline-opacity-25 link-opacity-50 link-opacity-100-hover" href="{{ url_for('auth.signup') }}">Are you not signed up? Let's do it</a></p>
+        </div>   
 
-    <input type="checkbox" name="remember">
-    <label for="remember">Remember</label><br>
+        <button type="submit" class="btn btn-success rounded-3">Login</button>
 
-    <button type="submit">Login</button>
-</form>
+    </form>
+    
+    
+</div>
+
 {% endblock %}
