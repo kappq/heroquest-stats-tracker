@@ -6,10 +6,10 @@
 {% if heroes %}
     <ul>
         {% for hero in heroes %}
-            <li><a href="{{ url_for('game.hero', hero_id=hero.id) }}">{{ hero.name }}</a></li>
+            <li><a href="{{ url_for('main.hero', hero_id=hero.id) }}">{{ hero.name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
-    <a href="{{ url_for('game.create_hero') }}">Create Hero</a>
+    <a href="{{ url_for('main.create_hero') }}">Create Hero</a>
 {% endif %}
 {% endblock %}

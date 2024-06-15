@@ -23,7 +23,7 @@ def login():
         login_user(user, remember=bool(remember))
         flash("Login successful", "success")
 
-        return redirect(url_for("main.profile"))
+        return redirect(url_for("main.heroes"))
 
     return render_template("auth/login.html")
 

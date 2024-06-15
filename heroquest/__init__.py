@@ -43,6 +43,3 @@ def init_views(app):
 
     from .views.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
-
-    from .views.game import game as game_blueprint
-    app.register_blueprint(game_blueprint)
