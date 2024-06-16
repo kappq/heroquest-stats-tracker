@@ -1,7 +1,8 @@
 from flask_login import UserMixin
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .. import db
+from .hero import Hero
 
 
 class User(UserMixin, db.Model):
@@ -9,3 +10,4 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(unique=True)
     username: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str] = mapped_column()
+    heroes: Mapped[list[Hero]] = relationship()

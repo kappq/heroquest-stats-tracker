@@ -23,13 +23,13 @@ def create_hero():
         hero_class = request.form["hero-class"]
 
         if hero_class == "barbarian":
-            hero = Hero(name=hero_name, hero_class=HeroClass.BARBARIAN, body=8, mind=2, attack=3, defend=2, movement=2)  # pyright: ignore
+            hero = Hero(owner=current_user.id, name=hero_name, hero_class=HeroClass.BARBARIAN, body=8, mind=2, attack=3, defend=2, movement=2)  # pyright: ignore
         elif hero_class == "dwarf":
-            hero = Hero(name=hero_name, hero_class=HeroClass.DWARF, body=7, mind=3, attack=2, defend=2, movement=2)  # pyright: ignore
+            hero = Hero(owner=current_user.id, name=hero_name, hero_class=HeroClass.DWARF, body=7, mind=3, attack=2, defend=2, movement=2)  # pyright: ignore
         elif hero_class == "elf":
-            hero = Hero(name=hero_name, hero_class=HeroClass.ELF, body=6, mind=4, attack=2, defend=2, movement=2)  # pyright: ignore
+            hero = Hero(owner=current_user.id, name=hero_name, hero_class=HeroClass.ELF, body=6, mind=4, attack=2, defend=2, movement=2)  # pyright: ignore
         elif hero_class == "wizard":
-            hero = Hero(name=hero_name, hero_class=HeroClass.WIZARD, body=4, mind=6, attack=1, defend=2, movement=2)  # pyright: ignore
+            hero = Hero(owner=current_user.id, name=hero_name, hero_class=HeroClass.WIZARD, body=4, mind=6, attack=1, defend=2, movement=2)  # pyright: ignore
         else:
             flash("Invalid hero class", "danger")
             return redirect(url_for("game.create_hero"))
@@ -46,8 +46,7 @@ def create_hero():
 @main.route("/heroes")
 @login_required
 def heroes():
-    heroes = Hero.query.all()
-    return render_template("main/heroes.html", heroes=heroes)
+    return render_template("main/heroes.html", heroes=current_user.heroes)
 
 
 @main.route("/hero/<int:hero_id>")
