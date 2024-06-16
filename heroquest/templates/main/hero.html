@@ -2,11 +2,31 @@
 
 {% block title %}Create Hero{% endblock %}
 
-{% block content %}
-<h1>Name: {{ hero.name }}</h1>
-<p>Body: {{ hero.body }}</p>
-<p>Mind: {{ hero.mind }}</p>
-<p>Attack: {{ hero.attack }}</p>
-<p>Defend: {{ hero.defend }}</p>
-<p>Movement: {{ hero.movement }}</p>
+{% block content %}    
+
+<div class="container min-vh-100"> 
+    
+    <h1 class="bg-success-subtle rounded-3 d-inline-flex position-sticky top-0 start-50 translate-middle-x mt-3">{{ hero.name }}</h1>
+    
+    <div class="d-flex align-items-center position-absolute top-50 start-50 translate-middle">
+        
+        <div class="d-inline-flex p-2">
+            <p class=" d-inline-flex">Body: {{ hero.body }}</p>
+        </div>
+
+        <div class="d-inline-flex p-2">
+            <p class="d-inline-flex">Mind: {{ hero.mind }}</p>
+        </div>
+        
+        <div  class="d-inline-flex p-2">
+            <p class="d-inline-flex p-2">Attack: {{ hero.attack }}</p>
+            <p class="d-inline-flex p-2">Defend: {{ hero.defend }}</p>
+            <p class="d-inline-flex p-2">Movement: {{ hero.movement }}</p>
+        </div>
+    
+    </div>
+</div>
+
+
+
 {% endblock %}

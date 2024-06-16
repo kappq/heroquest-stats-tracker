@@ -4,12 +4,12 @@
 
 {% block content %}
 
-    
+ 
+
 <div class="container min-vh-100 d-flex justify-content-center align-items-center"> 
     
     <form method="post">
-    
-        <div class="mb-3 d-block ">
+        <div class="mb-3 d-block">
             <label for="email" class="form-label">Email</label>
             <input type="text" name="email" required class="form-control border border-success border-opacity-50 rounded-3 w-auto" aria-describedby="emailHelp"><br>
         </div>
@@ -21,14 +21,14 @@
         
         <div class="mb-3 d-block ">
             <input type="checkbox" name="remember" class="form-check-input ">
-            <label for="remember" class="form-check-label">Remember</label><br>
+            <label for="remember" class="form-check-label">Remember me</label><br>
         </div>
           
         <div>  
             <p><a class="link-offset-2 link-underline link-underline-opacity-25 link-opacity-50 link-opacity-100-hover d-block " href="{{ url_for('auth.signup') }}">Are you not signed up? Let's do it</a></p>
         </div>   
 
-        <button type="submit" class="btn btn-success rounded-3 d-block ">Login</button>
+        <button type="submit" class="shadow btn btn-success rounded-3 d-block ">Login</button>
 
     </form>
     

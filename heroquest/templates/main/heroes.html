@@ -6,10 +6,21 @@
 {% if heroes %}
     <ul>
         {% for hero in heroes %}
-            <li><a href="{{ url_for('main.hero', hero_id=hero.id) }}">{{ hero.name }}</a></li>
+        <div class="container mt-5 d-flex justify-content-center align-items-center"> 
+            
+            <div class="card d-inline-flex">
+                <img src="" class="card-img-top">
+              
+                <div class="card-body shadow">
+                    <h1 class="card-title d-flex justify-content-center">{{ hero.name }}</h1>
+                    <p class="card-text d-flex justify-content-center">Let's play with {{ hero.name }}</p>
+                    <a href="{{ url_for('main.hero', hero_id=hero.id) }}" class="btn btn-success d-flex align-items-center d-flex justify-content-center">Play</a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </ul>
 {% else %}
-    <a href="{{ url_for('main.create_hero') }}">Create Hero</a>
+    <a href="{{ url_for('main.create_hero') }}" class="btn btn-success">Create Hero</a>
 {% endif %}
 {% endblock %}
