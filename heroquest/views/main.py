@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, flash, url_for
+from flask import Blueprint, redirect, render_template, request, flash, url_for, jsonify
 from flask_login import current_user, login_required
 
 from .. import db
@@ -53,8 +53,37 @@ def heroes():
 @login_required
 def hero(hero_id):
     hero = Hero.query.get(hero_id)
-    if not hero:
+    if not hero or hero.owner != current_user.id:
         flash("Hero not found", "danger")
         return redirect(url_for("main.heroes"))
 
     return render_template("main/hero.html", hero=hero)
+
+
+@main.route("/update-hero/<int:hero_id>", methods=["POST"])
+@login_required
+def update_hero(hero_id):
+    hero = Hero.query.get(hero_id)
+    if not hero or hero.owner != current_user.id:
+        flash("Hero not found", "danger")
+        return jsonify({"error": "Hero not found"})
+
+    stat = request.json["stat"]
+    value = request.json["value"]
+    if not stat or not value:
+        return jsonify({"error": "`stat` or `value` missing"})
+
+    if stat == "body":
+        hero.body += value
+    elif stat == "mind":
+        hero.mind += value
+    elif stat == "attack":
+        hero.attack += value
+    elif stat == "defend":
+        hero.defend += value
+    elif stat == "movement":
+        hero.movement += value
+
+    db.session.commit()
+
+    return jsonify({"success": "Hero updated successfully"})
