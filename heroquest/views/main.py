@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, flash, url_for, jsonify
+from flask import Blueprint, redirect, render_template, request, flash, url_for
 from flask_login import current_user, login_required
 
 from .. import db
@@ -36,7 +36,7 @@ def create_hero():
 
         db.session.add(hero)
         db.session.commit()
-        flash("Hero creation sucsessful", "success")
+        flash("Hero created sucsessfully", "success")
 
         return redirect(url_for("main.hero", hero_id=hero.id))
 
@@ -60,30 +60,16 @@ def hero(hero_id):
     return render_template("main/hero.html", hero=hero)
 
 
-@main.route("/update-hero/<int:hero_id>", methods=["POST"])
+@main.route("/delete-hero/<int:hero_id>")
 @login_required
-def update_hero(hero_id):
+def delete_hero(hero_id):
     hero = Hero.query.get(hero_id)
     if not hero or hero.owner != current_user.id:
         flash("Hero not found", "danger")
-        return jsonify({"error": "Hero not found"})
+    else:
+        db.session.delete(hero)
+        db.session.commit()
 
-    stat = request.json["stat"]
-    value = request.json["value"]
-    if not stat or not value:
-        return jsonify({"error": "`stat` or `value` missing"})
+        flash("Hero deleted successfully", "success")
 
-    if stat == "body":
-        hero.body += value
-    elif stat == "mind":
-        hero.mind += value
-    elif stat == "attack":
-        hero.attack += value
-    elif stat == "defend":
-        hero.defend += value
-    elif stat == "movement":
-        hero.movement += value
-
-    db.session.commit()
-
-    return jsonify({"success": "Hero updated successfully"})
+    return redirect(url_for("main.heroes"))
