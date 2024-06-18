@@ -3,19 +3,27 @@
 {% block title %}Create Hero{% endblock %}
 
 {% block content %}
-<form method="post">
-    <label for="hero-name">Hero Name:</label>
-    <input type="text" name="hero-name" required><br>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center"> 
+    <form method="post">
 
-    <label for="hero-class">Hero Class:</label>
-    <select name="hero-class">
-        <option value="barbarian">Barbarian</option>
-        <option value="dwarf">Dwarf</option>
-        <option value="elf">Elf</option>
-        <option value="wizard">Wizard</option>
-    </select><br>
-
-    <button type="submit">Create Hero</button>
-</form>
-
+        <div class="input-group ">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Hero Name" name="hero-name" required><br>
+                <label for="hero-name">Hero Name</label>
+            </div>
+        </div>
+        
+        <div>
+            <label for="hero-class">Hero Class</label>
+            <select name="hero-class" class="form-select">
+                <option selected value="barbarian">Barbarian</option>
+                <option value="dwarf">Dwarf</option>
+                <option value="elf">Elf</option>
+                <option value="wizard">Wizard</option>
+            </select><br>
+        <div>
+        <button type="submit" class="shadow btn btn-success border border-success-subtle position-sticky start-50 translate-middle mt-5">Create Hero</button> 
+        <a href="{{ url_for('main.heroes') }}" class="btn btn-outline-secondary position-absolute top-0 start-0 mt-3 ms-3"> Go back</a>
+    </form>
+</div>
 {% endblock %}

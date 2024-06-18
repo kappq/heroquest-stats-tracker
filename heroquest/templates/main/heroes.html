@@ -13,19 +13,23 @@
                     <h1 class="card-title d-flex justify-content-center">{{ hero.name }}</h1>
                     <p class="card-text d-flex justify-content-center">Let's play with {{ hero.name }}</p>
                     <a href="{{ url_for('main.hero', hero_id=hero.id) }}" class="btn btn-success d-flex align-items-center d-flex justify-content-center">Play</a>
-                    <a href="{{ url_for('main.delete_hero', hero_id=hero.id) }}" class="shadow btn btn-danger border border-danger-subtle">Delete this Hero</a>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('main.delete_hero', hero_id=hero.id) }}" class="btn btn-outline-danger border border-danger-subtle mt-3 d-inline-flex">Delete this Hero</a>
+                    </div> 
                 </div>
             </div>
         {% endfor %}
         <div class=" d-flex justify-content-center d-flex align-items-center position-absolute bottom-0 end-25 mb-5">
             <a href="{{ url_for('main.create_hero') }}" class="shadow btn btn-success border border-success-subtle">Create a new Hero</a>
         </div>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-danger position-absolute top-0 start-0 mt-3 ms-3"> Logout </a>
     </ul>
 {% else %}
     
     <div class=" d-flex justify-content-center d-flex align-items-center position-absolute top-50 start-50 translate-middle">
         <a href="{{ url_for('main.create_hero') }}" class="shadow btn btn-success border border-success-subtle">Create a new Hero</a>
     </div>
+    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-danger position-absolute top-0 start-0 mt-3 ms-3"> Logout </a>
 
     {% endif %}
 {% endblock %}
